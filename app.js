@@ -65,7 +65,7 @@ console.log(url);
 mongoose
     .connect(url)
     .then(function () {
-    app.listen(env_1.NODE_MONGO_PORT, function () { });
+    // app.listen(NODE_MONGO_PORT, () => {});
     console.log("Connected");
 })
     .catch(function (err) { return console.log(err); });
