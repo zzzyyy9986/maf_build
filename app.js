@@ -61,6 +61,7 @@ var url = "mongodb://localhost:".concat(env_1.DB_PORT, "/").concat(env_1.DB_NAME
 if (env_1.APP_MODE !== "DEV") {
     url = "mongodb://".concat(env_1.DB_USER, ":").concat(encodeURIComponent(env_1.DB_PASSWORD), "@").concat(env_1.DB_HOST, ":").concat(env_1.DB_PORT, "/").concat(env_1.DB_NAME);
 }
+console.log(url);
 mongoose
     .connect(url)
     .then(function () {
