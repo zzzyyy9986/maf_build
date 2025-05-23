@@ -108,6 +108,8 @@ var getListOfGames = function (req, res) { return __awaiter(void 0, void 0, void
                     }, req, res)];
             case 1:
                 dataRes = _a.sent();
+                console.log('Я');
+                console.log(dataRes);
                 res.status(201).json(__assign({}, dataRes));
                 return [2 /*return*/];
         }
