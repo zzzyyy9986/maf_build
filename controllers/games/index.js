@@ -61,6 +61,7 @@ var TelegramServices_1 = require("../../services/TelegramServices");
 var UserSessions_1 = __importDefault(require("../../models/UserSessions"));
 var Game_1 = require("../../models/Game");
 var responseStatuses_1 = require("../../common/enums/responseStatuses");
+var ApplicationService_1 = require("../../services/ApplicationService");
 var getGameById = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var game;
     return __generator(this, function (_a) {
@@ -108,7 +109,7 @@ var getListOfGames = function (req, res) { return __awaiter(void 0, void 0, void
                     }, req, res)];
             case 1:
                 dataRes = _a.sent();
-                console.log('Я');
+                console.log("Я");
                 console.log(dataRes);
                 res.status(201).json(__assign({}, dataRes));
                 return [2 /*return*/];
@@ -290,7 +291,6 @@ var getMyGames = function (req, res) { return __awaiter(void 0, void 0, void 0, 
         switch (_a.label) {
             case 0:
                 currentRequest = req;
-                ;
                 pagination = currentRequest.body.pagination;
                 userId = currentRequest.user.mafId;
                 return [4 /*yield*/, GameServices_1.GameServices.dataWithPagination(function () {
@@ -325,7 +325,7 @@ var getApplicationToken = function (req, res) { return __awaiter(void 0, void 0,
                     })];
             case 1:
                 userSession = _a.sent();
-                console.log('сессия');
+                console.log("сессия");
                 console.log(userSession);
                 if (!userSession) return [3 /*break*/, 4];
                 return [4 /*yield*/, User_1.default.findOne({
@@ -399,7 +399,7 @@ var getApplicationToken = function (req, res) { return __awaiter(void 0, void 0,
 }); };
 exports.getApplicationToken = getApplicationToken;
 var tgRegistration = function (req, res, frontPath) { return __awaiter(void 0, void 0, void 0, function () {
-    var jwt, authData, tgId, user, refreshToken, browserInfo;
+    var jwt, authData, tgId, user, refreshToken, browserInfo, secureCookieSettings;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -438,15 +438,8 @@ var tgRegistration = function (req, res, frontPath) { return __awaiter(void 0, v
                     })];
             case 2:
                 _a.sent();
-                res.cookie("refreshToken", refreshToken, {
-                    //нет доступа с фронта
-                    // httpOnly: true,
-                    // будут передаваться только по https
-                    // secure: true,
-                    //
-                    // sameSite: "lax", // strict or 'Lax', it depends
-                    maxAge: 60 * 60 * 24 * env_1.REFRESH_TOKEN_EXP_TIME_DAYS * 1000,
-                });
+                secureCookieSettings = ApplicationService_1.ApplicationSerive.getCookieSecureSettings();
+                res.cookie("refreshToken", refreshToken, __assign(__assign({}, __assign({}, secureCookieSettings)), { maxAge: 60 * 60 * 24 * env_1.REFRESH_TOKEN_EXP_TIME_DAYS * 1000 }));
                 res.redirect("/");
                 _a.label = 3;
             case 3: return [3 /*break*/, 5];
