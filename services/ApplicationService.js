@@ -15,10 +15,10 @@ var ApplicationSerive = /** @class */ (function () {
         else {
             return {
                 // нет доступа с фронта
-                httpOnly: true,
+                HttpOnly: true,
                 //будут передаваться только по https
-                secure: true,
-                sameSite: "lax", // strict or 'Lax', it depends
+                Secure: true,
+                SameSite: "lax", // strict or 'Lax', it depends
             };
         }
     };
