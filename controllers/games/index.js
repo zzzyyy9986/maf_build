@@ -439,6 +439,8 @@ var tgRegistration = function (req, res, frontPath) { return __awaiter(void 0, v
             case 2:
                 _a.sent();
                 secureCookieSettings = ApplicationService_1.ApplicationSerive.getCookieSecureSettings();
+                console.log("Настройки:");
+                console.log(secureCookieSettings);
                 res.cookie("refreshToken", refreshToken, __assign(__assign({}, __assign({}, secureCookieSettings)), { maxAge: 60 * 60 * 24 * env_1.REFRESH_TOKEN_EXP_TIME_DAYS * 1000 }));
                 res.redirect("/");
                 _a.label = 3;
