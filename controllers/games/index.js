@@ -399,7 +399,7 @@ var getApplicationToken = function (req, res) { return __awaiter(void 0, void 0,
 }); };
 exports.getApplicationToken = getApplicationToken;
 var tgRegistration = function (req, res, frontPath) { return __awaiter(void 0, void 0, void 0, function () {
-    var jwt, authData, tgId, user, refreshToken, browserInfo, secureCookieSettings;
+    var jwt, authData, tgId, user, refreshToken, browserInfo, secureCookieSettings, finalSettigns;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -440,8 +440,9 @@ var tgRegistration = function (req, res, frontPath) { return __awaiter(void 0, v
                 _a.sent();
                 secureCookieSettings = ApplicationService_1.ApplicationSerive.getCookieSecureSettings();
                 console.log("Настройки:");
-                console.log(secureCookieSettings);
-                res.cookie("refreshToken", refreshToken, __assign(__assign({}, __assign({}, secureCookieSettings)), { maxAge: 60 * 60 * 24 * env_1.REFRESH_TOKEN_EXP_TIME_DAYS * 1000 }));
+                finalSettigns = __assign(__assign({}, __assign({}, secureCookieSettings)), { maxAge: 60 * 60 * 24 * env_1.REFRESH_TOKEN_EXP_TIME_DAYS * 1000 });
+                console.log(finalSettigns);
+                res.cookie("refreshToken", refreshToken, finalSettigns);
                 res.redirect("/");
                 _a.label = 3;
             case 3: return [3 /*break*/, 5];
